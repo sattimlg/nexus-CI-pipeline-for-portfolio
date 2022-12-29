@@ -5,7 +5,7 @@ def buildApp(){
 
 def pushImage(){
     echo 'Building Image ...'
-    sh 'docker build -t 3.109.213.100:8082/sanskriti-portfolio:${BUILD_NUMBER} .'
+    sh "docker build -t 3.109.213.100:8082/sanskriti-portfolio:${BUILD_NUMBER} ."
 
     echo 'Pushing image to docker hosted rerpository on Nexus'
 
@@ -27,7 +27,7 @@ def commitChanges(){
         withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'PSW', usernameVariable: 'USER')]) {
         sh 'git config --global user.name "jenkins"'
         sh 'git config --global user.email "my.jenkins.server@gmail.com"'
-        sh "git remote set-url origin https://${USER}:${PSW}@github.com/sattimlg/nexus-CI-pipeline-for-portfolio.git"
+        sh ("git remote set-url origin https://${USER}:${PSW}@github.com/sattimlg/nexus-CI-pipeline-for-portfolio.git")
 
         sh '''
             #!/bin/bash
